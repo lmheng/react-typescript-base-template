@@ -10,6 +10,7 @@ src<br/>
 ├──pages<br/>
 ├──services<br/>
 ├──styles<br/>
+├──translations<br/>
 ├──types<br/>
 └──utils<br/>
 assets<br/>

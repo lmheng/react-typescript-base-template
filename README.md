@@ -1,6 +1,31 @@
-# Getting Started with Create React App
+# Getting Started with React Typescript Base Template
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Proposed structure
+src<br/>
+├──components<br/>
+├──constants<br/>
+├──layouts<br/>
+├──pages<br/>
+├──services<br/>
+├──styles<br/>
+├──translations<br/>
+├──types<br/>
+└──utils<br/>
+assets<br/>
+
+## Details of structure
+| Folder name  | What is it used for |
+| ------------- | ------------- |
+| components  | Contains reusable components that are most often used to compose Feature or Page components |
+| constants  | Contains reusable & immutable strings like URLs or Regex Patterns |
+| layouts  | Contains reusable Layout Components. A Layout Component is a component that composes the layout of a page |
+| pages  | Contains Page Components. Each Page Component is associated with a route |
+| services  | Contains reusable code for interacting with an API, often in the form of hooks, and ideally utilizing a server-cache tool like React Query or RTK Query |
+| styles  | Reusable or global styles (CSS) |
+| types  | Reusable types for projects utilizing TypeScript or Flow |
+| utils  | Reusable utility functions |
 
 ## Available Scripts
 

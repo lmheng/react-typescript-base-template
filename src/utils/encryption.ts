@@ -28,3 +28,8 @@ const decrypt = (input: string): any => {
 
   return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8));
 };
+
+export const Crypto = {
+  encrypt,
+  decrypt,
+};

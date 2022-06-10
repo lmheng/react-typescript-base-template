@@ -1,13 +1,11 @@
 import axios from "axios";
 import { Configurations } from "../../constants/configurations";
 import { IHttpInput } from "../../types";
-import { handleResponse, handleError } from "./response";
-
-import cookieservice from "../../utils/cookieservice";
-import encryption from "../../utils/encryption";
+import { CookieService, Crypto } from "../../utils";
+import { handleResponse, handleError } from "../../utils/response";
 
 //init token from cookie here
-const token = cookieservice.get(Configurations.TOKEN_NAME);
+const token = CookieService.get(Configurations.TOKEN_NAME);
 
 let instance = axios.create({
   baseURL: process.env.REACT_APP_API,
@@ -33,7 +31,7 @@ const getSingle = async <T>(url: string, input: IHttpInput) => {
   }
 
   return await axios
-    .get<T>(`${url}/${encryption.encrypt(input.id)}`)
+    .get<T>(`${url}/${Crypto.encrypt(input.id)}`)
     .then(handleResponse)
     .catch(handleError);
 };
@@ -44,7 +42,7 @@ const post = async <T>(url: string, input: IHttpInput) => {
   }
 
   return await axios
-    .post<T>(url, encryption.encrypt(input.body))
+    .post<T>(url, Crypto.encrypt(input.body))
     .then(handleResponse)
     .catch(handleError);
 };
@@ -55,7 +53,7 @@ const put = async <T>(url: string, input: IHttpInput) => {
   }
 
   return await axios
-    .put<T>(url, encryption.encrypt(input.body))
+    .put<T>(url, Crypto.encrypt(input.body))
     .then(handleResponse)
     .catch(handleError);
 };

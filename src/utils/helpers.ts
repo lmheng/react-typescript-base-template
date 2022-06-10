@@ -24,6 +24,10 @@ const isValidArray = (data: any): boolean => {
   return isArray;
 };
 
+const isValidObject = (data: any): boolean => {
+  return data instanceof Object;
+};
+
 const convertFileToBase64 = async (file: any): Promise<any> => {
   try {
     if (isFile(file)) {
@@ -105,6 +109,7 @@ export const Helper = {
   isFile,
   isNumber,
   isValidArray,
+  isValidObject,
   convertFileToBase64,
   downloadBase64,
   parseValueString,

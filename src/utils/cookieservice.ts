@@ -1,26 +1,25 @@
-import Cookie from 'universal-cookie';
+import Cookie from "universal-cookie";
 
 const cookie = new Cookie();
 
-class CookieService 
-{
-    get(key: string) 
-    {
-        return cookie.get(key);
-    }
+const get = (key: string) => {
+  return cookie.get(key);
+};
 
-    set(key: string, value: string, options: Object)
-    {
-        cookie.set(key, value, options);
-    }
+const set = (key: string, value: string, options: Object) => {
+  cookie.set(key, value, options);
+};
 
-    remove(key: string) 
-    {
-        cookie.remove(key);
-    }
-}
+const remove = (key: string) => {
+  cookie.remove(key);
+};
 
-export default new CookieService();
+export const CookieService = {
+  get,
+  set,
+  remove,
+};
+
 //Cookies refer to this video "https://www.youtube.com/watch?v=Z7viBoM1sNs"
 
 //Add in AuthService

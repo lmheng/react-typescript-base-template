@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "CalibriLight";
+  src: local("CalibriLight"),
+    url("../../assets/fonts/Calibri-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CalibriBold";
+  src: local("CalibriBold"),
+    url("../../assets/fonts/Calibri-Bold.ttf") format("truetype");
+}
+
+:root {
+  --primary: #4aae3f;
+  --secondary: #95d465;
+  --color_3: #6dd477;
+  --color_4: #6dd4b1;
+  --font_primary: #393939;
+  --font_secondary: #acacac;
+  --font_button: #ffffff;
+  --background: #ffffff;
+  --background_secondary: #f0f0f0;
+  --warning: #e13c3c;
+  --cancel: #acacac;
+  --white: #ffffff;
+
+  --font_family_primary: "CalibriLight";
+  --font_family_input: "CalibriBold";
+  --font_family_form: "CalibriBold";
+  --font_family_button: "CalibriLight";
+  --font_family_headline: "CalibriBold";
+  --font_family_navbar: "CalibriBold";
+  --font_family_tab: "CalibriBold";
+
+  --font_header_size: 34px;
+  --font_primary_size: 21px;
+  --font_subtext_size: 16px;
+}

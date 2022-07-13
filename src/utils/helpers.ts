@@ -17,6 +17,10 @@ const isNumber = (data: any): boolean => {
   return !isNaN(data);
 };
 
+const isDate = (data: any): boolean => {
+  return data instanceof Date;
+};
+
 const isValidArray = (data: any): boolean => {
   const isValidData = isValid(data);
   const isArray = isValidData && data instanceof Array;
@@ -103,11 +107,32 @@ const parseValueBoolean = (data: any): boolean => {
   return false;
 };
 
+const parseValueDate = (data: any): Date => {
+  try {
+    if (isDate(data)) {
+      return data;
+    }
+
+    if (!isDate(data)) {
+      return new Date(data);
+    }
+  } catch (error) {
+    handleError;
+  }
+  return new Date();
+};
+
+const getConstantColour = (colourCode: string): any => {
+  const style = getComputedStyle(document.body);
+  return style.getPropertyValue(colourCode);
+};
+
 export const Helper = {
   isValid,
   isValidText,
   isFile,
   isNumber,
+  isDate,
   isValidArray,
   isValidObject,
   convertFileToBase64,
@@ -116,4 +141,6 @@ export const Helper = {
   parseValueInteger,
   parseValueDecimal,
   parseValueBoolean,
+  parseValueDate,
+  getConstantColour,
 };

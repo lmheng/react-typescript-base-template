@@ -1,0 +1,45 @@
+@import url("constants.css");
+/*------------------------------------------------------------------
+[Main Stylesheet]
+Project:    AgileAP
+Version:    1.0.0
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[Table of contents]
+    1. Default tags
+    2. Text styles
+    3. Image styles
+*/
+
+/* #region Default tags*/
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
+    sans-serif;
+  background-color: var(--background);
+}
+
+a {
+  font-size: 16px !important;
+  cursor: pointer;
+  color: var(--primary);
+  font-family: var(--font_family_hyperlink);
+}
+
+a:hover {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+p {
+  font-size: var(--font_primary_size) !important;
+  line-height: 30px;
+  color: var(--font_primary);
+  font-family: var(--font_family_primary);
+}
+/* #endregion */

@@ -1,7 +1,7 @@
 import * as CryptoJS from "crypto-js";
 
-const ENCRYPT_KEY: string = process.env.ENCRYPT_KEY!;
-const ENCRYPT_PHRASE: string = process.env.ENCRYPT_PHRASE!;
+const ENCRYPT_KEY: string = process.env.REACT_APP_ENCRYPT_KEY!;
+const ENCRYPT_PHRASE: string = process.env.REACT_APP_ENCRYPT_PHRASE!;
 
 const encrypt = (input: any): string => {
   const key = CryptoJS.enc.Utf8.parse(ENCRYPT_KEY);

@@ -1,5 +1,5 @@
 export interface IHttpInput {
-  id: any;
   authenticated: boolean;
-  body: any;
+  id?: any;
+  body?: any;
 }

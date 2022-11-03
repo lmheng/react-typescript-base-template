@@ -1,4 +1,4 @@
-import { IFile } from "../types/utilities/IFile";
+import { IBlobFile, IFile } from "../types/utilities/IFile";
 import { handleError } from "./response";
 
 const isValid = (data: any): boolean => {
@@ -46,8 +46,8 @@ const convertFileToBase64 = async (file: any): Promise<any> => {
         };
       });
     }
-  } catch (error) {
-    handleError;
+  } catch (error: any) {
+    handleError(error, convertFileToBase64.name);
   }
   return "";
 };
@@ -63,11 +63,21 @@ const downloadBase64 = (file: IFile): any => {
   downloadLink.click();
 };
 
+const downloadArrayBuffer = (file: IBlobFile): any => {
+  file.buffer
+    .then((buff) => {
+      let blob = new Blob([buff], { type: file.type });
+      let url = URL.createObjectURL(blob);
+      window.open(url);
+    })
+    .catch((error) => handleError(error, downloadArrayBuffer.name));
+};
+
 const parseValueString = (data: any): string => {
   try {
     if (isValidText(data)) return data;
-  } catch (error) {
-    handleError;
+  } catch (error: any) {
+    handleError(error, parseValueString.name);
   }
   return "";
 };
@@ -77,8 +87,8 @@ const parseValueInteger = (data: any): number => {
     if (isNumber(data)) return data;
 
     if (!isNumber(data)) return parseInt(data);
-  } catch (error) {
-    handleError;
+  } catch (error: any) {
+    handleError(error, parseValueInteger.name);
   }
   return 0;
 };
@@ -88,8 +98,8 @@ const parseValueDecimal = (data: any): number => {
     if (isNumber(data)) return data;
 
     if (!isNumber(data)) return parseFloat(data);
-  } catch (error) {
-    handleError;
+  } catch (error: any) {
+    handleError(error, parseValueDecimal.name);
   }
   return 0.0;
 };
@@ -101,8 +111,8 @@ const parseValueBoolean = (data: any): boolean => {
       if (typeof data === "string")
         return data != "" && (data === "true" || data === "1") ? true : false;
     }
-  } catch (error) {
-    handleError;
+  } catch (error: any) {
+    handleError(error, parseValueBoolean.name);
   }
   return false;
 };
@@ -116,8 +126,8 @@ const parseValueDate = (data: any): Date => {
     if (!isDate(data)) {
       return new Date(data);
     }
-  } catch (error) {
-    handleError;
+  } catch (error: any) {
+    handleError(error, parseValueDate.name);
   }
   return new Date();
 };
@@ -137,6 +147,7 @@ export const Helper = {
   isValidObject,
   convertFileToBase64,
   downloadBase64,
+  downloadArrayBuffer,
   parseValueString,
   parseValueInteger,
   parseValueDecimal,

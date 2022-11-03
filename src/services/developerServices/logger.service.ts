@@ -1,8 +1,8 @@
-import { ApiCore } from "./core";
+import { ApiCore } from "../core";
 
-const base = "login";
+const base = "logger";
 
-export const apiLogin = (url: string) =>
+export const apiLogger = (url: string) =>
   new ApiCore({
     getAll: false,
     getSingle: false,

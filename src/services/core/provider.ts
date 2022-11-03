@@ -4,11 +4,13 @@ import { IHttpInput } from "../../types";
 import { CookieService, Crypto } from "../../utils";
 import { handleResponse, handleError } from "../../utils/response";
 
-//init token from cookie here
+// init token from cookie here
+// can also change configuration to use httpOnly cookie https://stackoverflow.com/questions/64552621/how-to-add-httponly-cookie-to-axios-request
 const token = CookieService.get(Configurations.TOKEN_NAME);
+const baseURL = process.env.REACT_APP_API;
 
 let instance = axios.create({
-  baseURL: process.env.REACT_APP_API,
+  baseURL: baseURL,
   headers: {
     "Content-type": "application/json",
     "Cache-Control": "no-cache, no-store, must-revalidate",
@@ -22,7 +24,10 @@ const getAll = async <T>(url: string, input: IHttpInput) => {
     instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
-  return await axios.get<T>(url).then(handleResponse).catch(handleError);
+  return axios
+    .get<T>(url)
+    .then((res) => handleResponse(res, url))
+    .catch((err) => handleError(err, url));
 };
 
 const getSingle = async <T>(url: string, input: IHttpInput) => {
@@ -30,10 +35,10 @@ const getSingle = async <T>(url: string, input: IHttpInput) => {
     instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
-  return await axios
+  return axios
     .get<T>(`${url}/${Crypto.encrypt(input.id)}`)
-    .then(handleResponse)
-    .catch(handleError);
+    .then((res) => handleResponse(res, url))
+    .catch((err) => handleError(err, url));
 };
 
 const post = async <T>(url: string, input: IHttpInput) => {
@@ -41,10 +46,10 @@ const post = async <T>(url: string, input: IHttpInput) => {
     instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
-  return await axios
+  return axios
     .post<T>(url, Crypto.encrypt(input.body))
-    .then(handleResponse)
-    .catch(handleError);
+    .then((res) => handleResponse(res, url))
+    .catch((err) => handleError(err, url));
 };
 
 const put = async <T>(url: string, input: IHttpInput) => {
@@ -52,10 +57,10 @@ const put = async <T>(url: string, input: IHttpInput) => {
     instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
-  return await axios
+  return axios
     .put<T>(url, Crypto.encrypt(input.body))
-    .then(handleResponse)
-    .catch(handleError);
+    .then((res) => handleResponse(res, url))
+    .catch((err) => handleError(err, url));
 };
 
 const remove = async <T>(url: string, input: IHttpInput) => {
@@ -63,10 +68,10 @@ const remove = async <T>(url: string, input: IHttpInput) => {
     instance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
-  return await axios
-    .delete<T>(url, input.id)
-    .then(handleResponse)
-    .catch(handleError);
+  return axios
+    .delete<T>(`${url}/${Crypto.encrypt(input.id)}`)
+    .then((res) => handleResponse(res, url))
+    .catch((err) => handleError(err, url));
 };
 
 export const apiProvider = {

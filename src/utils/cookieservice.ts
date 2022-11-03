@@ -6,7 +6,7 @@ const get = (key: string) => {
   return cookie.get(key);
 };
 
-const set = (key: string, value: string, options: Object) => {
+const set = (key: string, value: string, options?: Object) => {
   cookie.set(key, value, options);
 };
 
